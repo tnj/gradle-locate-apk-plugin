@@ -1,0 +1,31 @@
+plugins {
+    id "com.gradle.plugin-publish" version "0.9.9"
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+archivesBaseName = 'locate-apk' // settings.gradle で設定してない場合はこれで設定
+group = 'sh.nothing'
+version = '0.1.0'
+
+// The configuration example below shows the minimum required properties
+// configured to publish your plugin to the plugin portal
+pluginBundle {
+    website = 'https://github.com/tnj/gradle-locate-apk-plugin'
+    vcsUrl = 'https://github.com/tnj/gradle-locate-apk-plugin'
+    description = 'Reveal the location of APK file on every assemble and add tasks to open it on Finder.app'
+    tags = ['android']
+
+    plugins {
+        locateApkPlugin {
+            id = 'sh.nothing.locate-apk'
+            displayName = 'Locate APK Plugin for Android'
+        }
+    }
+}
